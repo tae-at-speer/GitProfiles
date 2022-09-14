@@ -22,6 +22,14 @@
 		EC7DFD1328D192F20032A7B0 /* Mithun.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */; };
 		EC7DFD1528D1994C0032A7B0 /* FollowingUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */; };
 		EC7DFD1728D1995D0032A7B0 /* FollowersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */; };
+		EC7DFD1928D19CA50032A7B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1828D19CA50032A7B0 /* ProfileViewController.swift */; };
+		EC7DFD1B28D19D500032A7B0 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1A28D19D500032A7B0 /* UserListTableViewCell.swift */; };
+		EC7DFD1D28D1A89F0032A7B0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1C28D1A89F0032A7B0 /* Constants.swift */; };
+		EC7DFD1F28D1A9320032A7B0 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1E28D1A9320032A7B0 /* CommonUtils.swift */; };
+		EC7DFD2228D1AB7D0032A7B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD2128D1AB7D0032A7B0 /* NetworkManager.swift */; };
+		EC7DFD2428D1ADA30032A7B0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD2328D1ADA30032A7B0 /* HomeViewModel.swift */; };
+		EC7DFD2628D1ADC10032A7B0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD2528D1ADC10032A7B0 /* UserViewModel.swift */; };
+		EC7DFD2828D1ADD30032A7B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD2728D1ADD30032A7B0 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +69,14 @@
 		EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mithun.jpeg; sourceTree = "<group>"; };
 		EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserListViewController.swift; sourceTree = "<group>"; };
 		EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewController.swift; sourceTree = "<group>"; };
+		EC7DFD1828D19CA50032A7B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EC7DFD1A28D19D500032A7B0 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		EC7DFD1C28D1A89F0032A7B0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EC7DFD1E28D1A9320032A7B0 /* CommonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
+		EC7DFD2128D1AB7D0032A7B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		EC7DFD2328D1ADA30032A7B0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EC7DFD2528D1ADC10032A7B0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		EC7DFD2728D1ADD30032A7B0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,11 +127,12 @@
 		EC7DFCD028D187A30032A7B0 /* GitProfiles */ = {
 			isa = PBXGroup;
 			children = (
-				EC7DFD0828D18A3A0032A7B0 /* Extensions */,
-				EC7DFD0728D189D60032A7B0 /* Utils */,
 				EC7DFD0428D189AF0032A7B0 /* Models */,
 				EC7DFD0528D189C00032A7B0 /* ViewModels */,
 				EC7DFD0628D189CF0032A7B0 /* ViewControllers */,
+				EC7DFD2028D1AB680032A7B0 /* Networking */,
+				EC7DFD0828D18A3A0032A7B0 /* Extensions */,
+				EC7DFD0728D189D60032A7B0 /* Utils */,
 				EC7DFCD128D187A30032A7B0 /* AppDelegate.swift */,
 				EC7DFCD328D187A30032A7B0 /* SceneDelegate.swift */,
 				EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */,
@@ -148,6 +165,7 @@
 		EC7DFD0428D189AF0032A7B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DFD2728D1ADD30032A7B0 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +173,8 @@
 		EC7DFD0528D189C00032A7B0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DFD2328D1ADA30032A7B0 /* HomeViewModel.swift */,
+				EC7DFD2528D1ADC10032A7B0 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -162,6 +182,7 @@
 		EC7DFD0628D189CF0032A7B0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DFD1828D19CA50032A7B0 /* ProfileViewController.swift */,
 				EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */,
 				EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */,
 				EC7DFD0B28D18AC90032A7B0 /* HomeViewController.swift */,
@@ -173,6 +194,8 @@
 		EC7DFD0728D189D60032A7B0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DFD1C28D1A89F0032A7B0 /* Constants.swift */,
+				EC7DFD1E28D1A9320032A7B0 /* CommonUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -189,8 +212,17 @@
 			isa = PBXGroup;
 			children = (
 				EC7DFD0E28D18C170032A7B0 /* HomeTableViewCell.swift */,
+				EC7DFD1A28D19D500032A7B0 /* UserListTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EC7DFD2028D1AB680032A7B0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DFD2128D1AB7D0032A7B0 /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,13 +357,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7DFD1B28D19D500032A7B0 /* UserListTableViewCell.swift in Sources */,
+				EC7DFD1D28D1A89F0032A7B0 /* Constants.swift in Sources */,
 				EC7DFD1028D18C170032A7B0 /* HomeTableViewCell.swift in Sources */,
+				EC7DFD2228D1AB7D0032A7B0 /* NetworkManager.swift in Sources */,
+				EC7DFD2828D1ADD30032A7B0 /* User.swift in Sources */,
 				EC7DFD0C28D18AC90032A7B0 /* HomeViewController.swift in Sources */,
 				EC7DFCDC28D187A30032A7B0 /* GitProfiles.xcdatamodeld in Sources */,
 				EC7DFCD228D187A30032A7B0 /* AppDelegate.swift in Sources */,
 				EC7DFD1728D1995D0032A7B0 /* FollowersListViewController.swift in Sources */,
 				EC7DFD0A28D18A470032A7B0 /* UIViewExtensions.swift in Sources */,
+				EC7DFD2428D1ADA30032A7B0 /* HomeViewModel.swift in Sources */,
+				EC7DFD1928D19CA50032A7B0 /* ProfileViewController.swift in Sources */,
 				EC7DFD1528D1994C0032A7B0 /* FollowingUserListViewController.swift in Sources */,
+				EC7DFD1F28D1A9320032A7B0 /* CommonUtils.swift in Sources */,
+				EC7DFD2628D1ADC10032A7B0 /* UserViewModel.swift in Sources */,
 				EC7DFCD428D187A30032A7B0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

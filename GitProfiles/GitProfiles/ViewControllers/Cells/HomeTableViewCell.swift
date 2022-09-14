@@ -39,7 +39,7 @@ class HomeTableViewCell: UITableViewCell {
     let followersButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderColor = UIColor.systemBlue.cgColor
         btn.layer.borderWidth = 0.5
         btn.layer.cornerRadius = 15
         btn.layer.masksToBounds = true
@@ -49,7 +49,7 @@ class HomeTableViewCell: UITableViewCell {
     let followingButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderColor = UIColor.systemBlue.cgColor
         btn.layer.borderWidth = 0.5
         btn.layer.cornerRadius = 15
         btn.layer.masksToBounds = true
@@ -96,7 +96,7 @@ class HomeTableViewCell: UITableViewCell {
         stackView.anchor(top: descriptionLabel.bottomAnchor, bottom: contentView.bottomAnchor, leading: userAvatar.trailingAnchor, trialing: contentView.trailingAnchor, padding: .init(top: 8, left: 8, bottom: 8, right: 8))
         
         followingButton.addTarget(self, action: #selector(navigateToFollowingList), for: .touchUpInside)
-        followersButton.addTarget(self, action: #selector(navigateToFollowingList), for: .touchUpInside)
+        followersButton.addTarget(self, action: #selector(navigateToFollowersList), for: .touchUpInside)
     }
     
     //MARK: - Configuare Cell

@@ -18,12 +18,25 @@ class HomeViewController: UIViewController{
         tv.separatorInset = .zero
         return tv
     }()
+    let accountBtn: UIButton = {
+        let btn = UIButton(frame: CGRect(x: -4, y: -4, width: 40, height: 40))
+        btn.layer.cornerRadius  = 20
+        btn.layer.masksToBounds = true
+        btn.setBackgroundImage(UIImage(systemName: "person.circle.fill"), for: .normal)
+        return btn
+    }()
+
+    var isSearchBarEmpty: Bool {
+      return searchBarController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchBarController.isActive && !isSearchBarEmpty
+    }
     
     let refreshControl = UIRefreshControl()
     
     let searchBarController = UISearchController(searchResultsController: nil)
     
-    var homeCellId = "HomeCell"
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +51,11 @@ class HomeViewController: UIViewController{
         tableview.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trialing: view.trailingAnchor)
         
         title = "Search"
+        
+        let accountBarButton = UIBarButtonItem(customView:  accountBtn)
+        accountBtn.addTarget(self, action: #selector(navigateToProfile), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = accountBarButton
+
     }
     
     //MARK: - UITableview setup
@@ -45,7 +63,7 @@ class HomeViewController: UIViewController{
         tableview.delegate = self
         tableview.dataSource = self
         
-        tableview.register(HomeTableViewCell.self, forCellReuseIdentifier: homeCellId)
+        tableview.register(HomeTableViewCell.self, forCellReuseIdentifier:  Constants.Identifiers.homeCellId)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableview.addSubview(refreshControl)
     }
@@ -53,9 +71,10 @@ class HomeViewController: UIViewController{
     fileprivate func searchBarSetup(){
         searchBarController.searchResultsUpdater = self
         searchBarController.obscuresBackgroundDuringPresentation = false
-        searchBarController.searchBar.placeholder = "Search A profile"
+        searchBarController.searchBar.placeholder = "Search a profile"
         navigationItem.searchController = searchBarController
         definesPresentationContext = true
+        searchBarController.searchBar.delegate = self
     }
     //MARK: - Pull to refresh
     @objc fileprivate func refresh(){
@@ -71,6 +90,10 @@ class HomeViewController: UIViewController{
         let followersVC = FollowersListViewController()
         navigationController?.pushViewController(followersVC, animated: true)
     }
+    //MARK: - Navigate To profile
+    @objc fileprivate func navigateToProfile(){
+        CommonUtils.navigateToProfile(from: self)
+    }
 }
 //MARK: -  UITableview delegate & dataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,7 +105,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 5
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableview.dequeueReusableCell(withIdentifier: homeCellId, for: indexPath) as? HomeTableViewCell else {
+        guard let cell = tableview.dequeueReusableCell(withIdentifier:  Constants.Identifiers.homeCellId, for: indexPath) as? HomeTableViewCell else {
             return UITableViewCell()
         }
         cell.user = ""
@@ -98,8 +121,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 //MARK: - UISearchResult Protocol
-extension HomeViewController: UISearchResultsUpdating {
+extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        let searchBar = searchController.searchBar
+//        filterContentForSearchText(searchBar.text!, category: category)
     }
 }
