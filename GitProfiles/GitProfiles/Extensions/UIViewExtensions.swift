@@ -1,0 +1,46 @@
+//
+//  UIViewExtensions.swift
+//  GitProfiles
+//
+//  Created by Mithun Karun Suma on 2022-09-14.
+//
+
+import Foundation
+import UIKit
+
+
+extension UIView {
+    
+    //MARK: - Layout helpers
+    func anchor(top: NSLayoutYAxisAnchor?, bottom: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, trialing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero){
+        
+        if let top = top{
+            topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
+        }
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom).isActive = true
+        }
+        if let leading = leading {
+            leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
+        }
+        if let trialing = trialing{
+            trailingAnchor.constraint(equalTo: trialing, constant: -padding.right).isActive = true
+        }
+        
+        if size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+        if size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+    
+    func anchorFixedSize(size:CGSize = .zero){
+        if  size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+        if  size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+}

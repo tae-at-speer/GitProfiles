@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EC7DFCD228D187A30032A7B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCD128D187A30032A7B0 /* AppDelegate.swift */; };
 		EC7DFCD428D187A30032A7B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCD328D187A30032A7B0 /* SceneDelegate.swift */; };
-		EC7DFCD628D187A30032A7B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCD528D187A30032A7B0 /* ViewController.swift */; };
 		EC7DFCD928D187A30032A7B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7DFCD728D187A30032A7B0 /* Main.storyboard */; };
 		EC7DFCDC28D187A30032A7B0 /* GitProfiles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCDA28D187A30032A7B0 /* GitProfiles.xcdatamodeld */; };
 		EC7DFCDE28D187A50032A7B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7DFCDD28D187A50032A7B0 /* Assets.xcassets */; };
@@ -17,6 +16,12 @@
 		EC7DFCEC28D187A50032A7B0 /* GitProfilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCEB28D187A50032A7B0 /* GitProfilesTests.swift */; };
 		EC7DFCF628D187A50032A7B0 /* GitProfilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCF528D187A50032A7B0 /* GitProfilesUITests.swift */; };
 		EC7DFCF828D187A50032A7B0 /* GitProfilesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFCF728D187A50032A7B0 /* GitProfilesUITestsLaunchTests.swift */; };
+		EC7DFD0A28D18A470032A7B0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD0928D18A470032A7B0 /* UIViewExtensions.swift */; };
+		EC7DFD0C28D18AC90032A7B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD0B28D18AC90032A7B0 /* HomeViewController.swift */; };
+		EC7DFD1028D18C170032A7B0 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD0E28D18C170032A7B0 /* HomeTableViewCell.swift */; };
+		EC7DFD1328D192F20032A7B0 /* Mithun.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */; };
+		EC7DFD1528D1994C0032A7B0 /* FollowingUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */; };
+		EC7DFD1728D1995D0032A7B0 /* FollowersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +45,6 @@
 		EC7DFCCE28D187A30032A7B0 /* GitProfiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitProfiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7DFCD128D187A30032A7B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7DFCD328D187A30032A7B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC7DFCD528D187A30032A7B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC7DFCD828D187A30032A7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC7DFCDB28D187A30032A7B0 /* GitProfiles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitProfiles.xcdatamodel; sourceTree = "<group>"; };
 		EC7DFCDD28D187A50032A7B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +55,12 @@
 		EC7DFCF128D187A50032A7B0 /* GitProfilesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitProfilesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7DFCF528D187A50032A7B0 /* GitProfilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitProfilesUITests.swift; sourceTree = "<group>"; };
 		EC7DFCF728D187A50032A7B0 /* GitProfilesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitProfilesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EC7DFD0928D18A470032A7B0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		EC7DFD0B28D18AC90032A7B0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EC7DFD0E28D18C170032A7B0 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mithun.jpeg; sourceTree = "<group>"; };
+		EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserListViewController.swift; sourceTree = "<group>"; };
+		EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +111,14 @@
 		EC7DFCD028D187A30032A7B0 /* GitProfiles */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DFD0828D18A3A0032A7B0 /* Extensions */,
+				EC7DFD0728D189D60032A7B0 /* Utils */,
+				EC7DFD0428D189AF0032A7B0 /* Models */,
+				EC7DFD0528D189C00032A7B0 /* ViewModels */,
+				EC7DFD0628D189CF0032A7B0 /* ViewControllers */,
 				EC7DFCD128D187A30032A7B0 /* AppDelegate.swift */,
 				EC7DFCD328D187A30032A7B0 /* SceneDelegate.swift */,
-				EC7DFCD528D187A30032A7B0 /* ViewController.swift */,
+				EC7DFD1228D192F10032A7B0 /* Mithun.jpeg */,
 				EC7DFCD728D187A30032A7B0 /* Main.storyboard */,
 				EC7DFCDD28D187A50032A7B0 /* Assets.xcassets */,
 				EC7DFCDF28D187A50032A7B0 /* LaunchScreen.storyboard */,
@@ -128,6 +143,54 @@
 				EC7DFCF728D187A50032A7B0 /* GitProfilesUITestsLaunchTests.swift */,
 			);
 			path = GitProfilesUITests;
+			sourceTree = "<group>";
+		};
+		EC7DFD0428D189AF0032A7B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC7DFD0528D189C00032A7B0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EC7DFD0628D189CF0032A7B0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DFD1628D1995D0032A7B0 /* FollowersListViewController.swift */,
+				EC7DFD1428D1994C0032A7B0 /* FollowingUserListViewController.swift */,
+				EC7DFD0B28D18AC90032A7B0 /* HomeViewController.swift */,
+				EC7DFD0D28D18BFC0032A7B0 /* Cells */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EC7DFD0728D189D60032A7B0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EC7DFD0828D18A3A0032A7B0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DFD0928D18A470032A7B0 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EC7DFD0D28D18BFC0032A7B0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DFD0E28D18C170032A7B0 /* HomeTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7DFD1328D192F20032A7B0 /* Mithun.jpeg in Resources */,
 				EC7DFCE128D187A50032A7B0 /* LaunchScreen.storyboard in Resources */,
 				EC7DFCDE28D187A50032A7B0 /* Assets.xcassets in Resources */,
 				EC7DFCD928D187A30032A7B0 /* Main.storyboard in Resources */,
@@ -261,9 +325,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7DFD1028D18C170032A7B0 /* HomeTableViewCell.swift in Sources */,
+				EC7DFD0C28D18AC90032A7B0 /* HomeViewController.swift in Sources */,
 				EC7DFCDC28D187A30032A7B0 /* GitProfiles.xcdatamodeld in Sources */,
-				EC7DFCD628D187A30032A7B0 /* ViewController.swift in Sources */,
 				EC7DFCD228D187A30032A7B0 /* AppDelegate.swift in Sources */,
+				EC7DFD1728D1995D0032A7B0 /* FollowersListViewController.swift in Sources */,
+				EC7DFD0A28D18A470032A7B0 /* UIViewExtensions.swift in Sources */,
+				EC7DFD1528D1994C0032A7B0 /* FollowingUserListViewController.swift in Sources */,
 				EC7DFCD428D187A30032A7B0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
