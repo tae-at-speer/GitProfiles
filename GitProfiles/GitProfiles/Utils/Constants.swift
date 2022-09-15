@@ -13,6 +13,7 @@ struct Constants {
         
        static let userListCellId = "Usercell"
        static let homeCellId = "HomeCell"
+       static let profileCell = "ProfileCell"
 
     }
 }

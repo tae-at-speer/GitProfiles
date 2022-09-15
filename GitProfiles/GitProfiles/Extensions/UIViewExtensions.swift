@@ -43,4 +43,12 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
+    func anchorCenter(to view:UIView, xAnchor:Bool?, yAnchor:Bool?, xConstant:CGFloat = .zero, yConstant:CGFloat = .zero){
+        if let _ = xAnchor{
+            centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: xConstant).isActive = true
+        }
+        if let _ = yAnchor{
+            centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: yConstant).isActive = true
+        }
+    }
 }

@@ -17,11 +17,14 @@ struct NetworkManager {
     //MARK: - Generic API call helper
     func makeNetworkCall<T: Codable>(_ urlPath: String,parms:[String:Any]?,method: String, completion: @escaping((Result<T, Error>)->Void)){
         
-        guard let url = URL(string: urlPath) else { return }
+        let urlString = URLEndpoint.baseUrl + urlPath
+        guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: parms ?? [:], options: [])
+        if let parms = parms {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: parms, options: [])
+        }
         
         let session = URLSession.shared
         

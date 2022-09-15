@@ -27,12 +27,14 @@ class HomeTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 2
         return lbl
     }()
     
     let descriptionLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 3
         return lbl
     }()
     
@@ -57,7 +59,7 @@ class HomeTableViewCell: UITableViewCell {
     }()
     
     
-    var user: String? {
+    var user: User? {
         didSet{
             configureCell(user: user)
         }
@@ -101,14 +103,14 @@ class HomeTableViewCell: UITableViewCell {
     
     //MARK: - Configuare Cell
     
-    fileprivate func configureCell(user:String?){
+    fileprivate func configureCell(user:User?){
         userAvatar.image = #imageLiteral(resourceName: "Mithun.jpeg")
-        userNameLabel.text = "User Name"
-        nameLabel.text = "Name"
-        descriptionLabel.text = "Description"
+        userNameLabel.text = user?.login ?? "Unknown"
+        nameLabel.text = user?.name ?? "Unknown"
+        descriptionLabel.text = user?.bio ?? "Unknown"
         
-        followingButton.setTitle("Following 8", for: .normal)
-        followersButton.setTitle("Followers 888", for: .normal)
+        followingButton.setTitle("Following \(user?.following ?? 0)", for: .normal)
+        followersButton.setTitle("Followers \(user?.followers ?? 0)", for: .normal)
     }
     //MARK: - Navigate to Followers list
     @objc fileprivate func navigateToFollowersList(){

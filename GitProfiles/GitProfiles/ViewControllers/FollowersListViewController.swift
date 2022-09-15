@@ -11,11 +11,16 @@ import UIKit
 class FollowersListViewController: UITableViewController {
     
     let pullToRefreshControl = UIRefreshControl()
+    var viewModel = UserViewModel()
+    var user: User?
+    var followers: [User]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         uiSetup()
         setupTableView()
+        getFollowingList()
     }
     
     //MARK: - UI Setup
@@ -33,7 +38,24 @@ class FollowersListViewController: UITableViewController {
     }
     //MARK: - Pull to refresh
     @objc fileprivate func refresh(){
-        
+        getFollowingList()
+    }
+    //MARK: - Get all following users
+    fileprivate func getFollowingList(){
+        guard let user = user else {
+            return
+        }
+        viewModel.getFollowerList(user: user) { followers, err in
+            DispatchQueue.main.async {
+                self.pullToRefreshControl.endRefreshing()
+            if err != nil{
+                print("Error", err?.localizedDescription ?? "")
+                return
+            }
+            self.followers = followers
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -43,17 +65,20 @@ extension FollowersListViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return followers?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.userListCellId, for: indexPath) as? UserListTableViewCell else {
             return UITableViewCell()
         }
-        cell.user = ""
+        cell.user = followers?[indexPath.row]
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        CommonUtils.navigateToProfile(from: self)
+        guard let user = self.followers?[indexPath.row] else {
+            return
+        }
+        CommonUtils.navigateToProfile(from: self, user: user)
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

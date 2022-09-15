@@ -25,7 +25,7 @@ class UserListTableViewCell : UITableViewCell {
         return lbl
     }()
 
-    var user: String? {
+    var user: User? {
         didSet{
             configureCell(user: user)
         }
@@ -45,8 +45,8 @@ class UserListTableViewCell : UITableViewCell {
     }
     
     //MARK: - Configure cell
-    fileprivate func configureCell(user:String?){
-        nameLabel.text = "Following User"
+    fileprivate func configureCell(user: User?){
+        nameLabel.text = user?.login ?? "Unknown"
         userAvatar.image = #imageLiteral(resourceName: "Mithun.jpeg")
     }
 

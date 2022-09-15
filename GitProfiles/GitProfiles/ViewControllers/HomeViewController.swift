@@ -18,25 +18,25 @@ class HomeViewController: UIViewController{
         tv.separatorInset = .zero
         return tv
     }()
-    let accountBtn: UIButton = {
-        let btn = UIButton(frame: CGRect(x: -4, y: -4, width: 40, height: 40))
-        btn.layer.cornerRadius  = 20
-        btn.layer.masksToBounds = true
-        btn.setBackgroundImage(UIImage(systemName: "person.circle.fill"), for: .normal)
-        return btn
+    let noResultLabel: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 200, height: 35))
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.textAlignment = .center
+        lbl.font = UIFont.systemFont(ofSize: 20)
+        lbl.textColor = .black
+        lbl.text = "Not found"
+        return lbl
     }()
-
     var isSearchBarEmpty: Bool {
       return searchBarController.searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
       return searchBarController.isActive && !isSearchBarEmpty
     }
-    
-    let refreshControl = UIRefreshControl()
+    var users: [User]? = []
     
     let searchBarController = UISearchController(searchResultsController: nil)
-    
+    let userViewModel = UserViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,15 +47,12 @@ class HomeViewController: UIViewController{
     
     //MARK: - UI Setup
     fileprivate func uiSetup(){
-        view.addSubview(tableview)
+        [tableview, noResultLabel].forEach({view.addSubview($0)})
+        tableview.bringSubviewToFront(noResultLabel)
         tableview.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trialing: view.trailingAnchor)
-        
+        noResultLabel.anchorCenter(to: self.view, xAnchor: true, yAnchor: true)
+        noResultLabel.anchorFixedSize(size: .init(width: view.frame.width, height: 30))
         title = "Search"
-        
-        let accountBarButton = UIBarButtonItem(customView:  accountBtn)
-        accountBtn.addTarget(self, action: #selector(navigateToProfile), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = accountBarButton
-
     }
     
     //MARK: - UITableview setup
@@ -64,35 +61,45 @@ class HomeViewController: UIViewController{
         tableview.dataSource = self
         
         tableview.register(HomeTableViewCell.self, forCellReuseIdentifier:  Constants.Identifiers.homeCellId)
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableview.addSubview(refreshControl)
     }
     //MARK: - Search bar setup
     fileprivate func searchBarSetup(){
-        searchBarController.searchResultsUpdater = self
         searchBarController.obscuresBackgroundDuringPresentation = false
         searchBarController.searchBar.placeholder = "Search a profile"
         navigationItem.searchController = searchBarController
         definesPresentationContext = true
         searchBarController.searchBar.delegate = self
     }
-    //MARK: - Pull to refresh
-    @objc fileprivate func refresh(){
-        
-    }
     //MARK: - Navigate To Following user lists
-    fileprivate func navigateToFollowingUserList(){
+    fileprivate func navigateToFollowingUserList(user: User?){
         let followingVC = FollowingUserListViewController()
+        followingVC.user = user
         navigationController?.pushViewController(followingVC, animated: true)
     }
     //MARK: - Navigate To Followers  lists
-    fileprivate func navigateToFollowersList(){
+    fileprivate func navigateToFollowersList(user: User?){
         let followersVC = FollowersListViewController()
+        followersVC.user = user
         navigationController?.pushViewController(followersVC, animated: true)
     }
-    //MARK: - Navigate To profile
-    @objc fileprivate func navigateToProfile(){
-        CommonUtils.navigateToProfile(from: self)
+    
+    //MARK: - Search
+    fileprivate func searchUser(query:String){
+        userViewModel.searchUser(query: query) { [weak self] user, err in
+            
+            if err != nil {
+                print("Error", err?.localizedDescription ?? "")
+                return
+            }
+            self?.users?.removeAll()
+            guard let user = user else {
+                return
+            }
+            self?.users?.append(user)
+            DispatchQueue.main.async {
+                self?.tableview.reloadData()
+            }
+        }
     }
 }
 //MARK: -  UITableview delegate & dataSource
@@ -102,15 +109,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableview.dequeueReusableCell(withIdentifier:  Constants.Identifiers.homeCellId, for: indexPath) as? HomeTableViewCell else {
             return UITableViewCell()
         }
-        cell.user = ""
-        cell.followerButtonTapAction = { self.navigateToFollowersList() }
-        cell.followingButtonTapAction = { self.navigateToFollowingUserList()}
+        cell.user = users?[indexPath.row]
+        cell.followerButtonTapAction = { self.navigateToFollowersList(user: self.users?[indexPath.row]) }
+        cell.followingButtonTapAction = { self.navigateToFollowingUserList(user: self.users?[indexPath.row])}
+        noResultLabel.isHidden = users?.count ?? 0 != 0
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,9 +129,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 //MARK: - UISearchResult Protocol
-extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-//        filterContentForSearchText(searchBar.text!, category: category)
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchBar = searchBarController.searchBar
+            if isFiltering {
+            searchUser(query: searchBar.text!)
+        }
     }
 }
