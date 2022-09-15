@@ -1,0 +1,6 @@
+framework module Pods_GitProfiles_GitProfilesUITests {
+  umbrella header "Pods-GitProfiles-GitProfilesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

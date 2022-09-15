@@ -10,7 +10,7 @@ import UIKit
 
 
 class FollowingUserListViewController: UITableViewController {
-    
+        
     let pullToRefreshControl = UIRefreshControl()
     var viewModel = UserViewModel()
     var user: User?

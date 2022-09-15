@@ -42,11 +42,15 @@ struct UserViewModel {
     //MARK: - Search Profile - API
     func searchUser(query:String,completion: @escaping((_ users: User?, Error?)->Void)){
         let urlPath = String(format: URLEndpoint.user, query.lowercased())
-       NetworkManager.shared.makeNetworkCall(urlPath, parms: nil, method: "GET") {(result: Result<User, Error>) in
+       NetworkManager.shared.makeNetworkCall(urlPath, parms: nil, method: "GET") {(result: Result<User?, Error>) in
             switch result {
             case .success(let success):
-                let followingList = success
-                completion(followingList, nil)
+                if let _  = success?.id {
+                    let followingList = success
+                    completion(followingList, nil)
+                } else {
+                    completion(nil, NSError(domain:"Something went wrong", code: 500, userInfo:nil))
+                }
             case .failure(let failure):
                 completion(nil, failure)
                 print("Error", failure.localizedDescription)

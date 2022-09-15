@@ -21,12 +21,14 @@ class HomeTableViewCell: UITableViewCell {
     let userNameLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont.boldSystemFont(ofSize: 18)
         return lbl
     }()
     
     let nameLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont.systemFont(ofSize: 17)
         lbl.numberOfLines = 2
         return lbl
     }()
@@ -34,7 +36,8 @@ class HomeTableViewCell: UITableViewCell {
     let descriptionLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.numberOfLines = 3
+        lbl.font = UIFont.systemFont(ofSize: 14)
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -104,10 +107,10 @@ class HomeTableViewCell: UITableViewCell {
     //MARK: - Configuare Cell
     
     fileprivate func configureCell(user:User?){
-        userAvatar.image = #imageLiteral(resourceName: "Mithun.jpeg")
-        userNameLabel.text = user?.login ?? "Unknown"
-        nameLabel.text = user?.name ?? "Unknown"
-        descriptionLabel.text = user?.bio ?? "Unknown"
+        CommonUtils.setImageFrom(url: user?.avatarURL?.relativeString, imageView: userAvatar)
+        userNameLabel.text = user?.login ?? "Not Available"
+        nameLabel.text = "Name: " + (user?.name ?? "Not Available")
+        descriptionLabel.text = "Bio: " + (user?.bio ?? "Not Available")
         
         followingButton.setTitle("Following \(user?.following ?? 0)", for: .normal)
         followersButton.setTitle("Followers \(user?.followers ?? 0)", for: .normal)

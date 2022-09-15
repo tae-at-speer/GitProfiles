@@ -22,11 +22,13 @@ class HomeViewController: UIViewController{
         let lbl = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 200, height: 35))
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textAlignment = .center
-        lbl.font = UIFont.systemFont(ofSize: 20)
+        lbl.font = UIFont.boldSystemFont(ofSize: 20)
         lbl.textColor = .black
         lbl.text = "Not found"
+        lbl.isHidden = true
         return lbl
     }()
+    let loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
     var isSearchBarEmpty: Bool {
       return searchBarController.searchBar.text?.isEmpty ?? true
     }
@@ -35,6 +37,7 @@ class HomeViewController: UIViewController{
     }
     var users: [User]? = []
     
+    var searchUserWorkItem: DispatchWorkItem?
     let searchBarController = UISearchController(searchResultsController: nil)
     let userViewModel = UserViewModel()
     override func viewDidLoad() {
@@ -47,11 +50,13 @@ class HomeViewController: UIViewController{
     
     //MARK: - UI Setup
     fileprivate func uiSetup(){
-        [tableview, noResultLabel].forEach({view.addSubview($0)})
-        tableview.bringSubviewToFront(noResultLabel)
+        [tableview, noResultLabel, loader].forEach({view.addSubview($0)})
+        [loader, noResultLabel].forEach({tableview.bringSubviewToFront($0)})
         tableview.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trialing: view.trailingAnchor)
         noResultLabel.anchorCenter(to: self.view, xAnchor: true, yAnchor: true)
         noResultLabel.anchorFixedSize(size: .init(width: view.frame.width, height: 30))
+        loader.center = view.center
+        loader.hidesWhenStopped = true
         title = "Search"
     }
     
@@ -86,7 +91,8 @@ class HomeViewController: UIViewController{
     //MARK: - Search
     fileprivate func searchUser(query:String){
         userViewModel.searchUser(query: query) { [weak self] user, err in
-            
+            DispatchQueue.main.async {
+                self?.loader.stopAnimating()
             if err != nil {
                 print("Error", err?.localizedDescription ?? "")
                 return
@@ -96,7 +102,6 @@ class HomeViewController: UIViewController{
                 return
             }
             self?.users?.append(user)
-            DispatchQueue.main.async {
                 self?.tableview.reloadData()
             }
         }
@@ -128,13 +133,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
 }
-//MARK: - UISearchResult Protocol
+//MARK: - UISearchbar delegate
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchBar = searchBarController.searchBar
-            if isFiltering {
-            searchUser(query: searchBar.text!)
+        
+        if isFiltering {
+            loader.startAnimating()
+            //Cancel previous task if the user keep on typing to reduce network calls
+            self.searchUserWorkItem?.cancel()
+            let searchText = searchBar.text!
+            let workItem: DispatchWorkItem = DispatchWorkItem {
+                self.searchUser(query: searchText)
+            }
+            self.searchUserWorkItem = workItem
+            DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1), execute: workItem)
         }
     }
 }

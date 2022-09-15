@@ -46,8 +46,8 @@ class UserListTableViewCell : UITableViewCell {
     
     //MARK: - Configure cell
     fileprivate func configureCell(user: User?){
-        nameLabel.text = user?.login ?? "Unknown"
-        userAvatar.image = #imageLiteral(resourceName: "Mithun.jpeg")
+        nameLabel.text = user?.login ?? "Not Available"
+        CommonUtils.setImageFrom(url: user?.avatarURL?.relativeString, imageView: userAvatar)
     }
 
     required init?(coder aDecoder: NSCoder) {

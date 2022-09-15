@@ -43,15 +43,15 @@ extension ProfileViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.profileCell, for: indexPath) as? ProfileCell else {
                 return UITableViewCell()
             }
-            cell.userAvatar.image = #imageLiteral(resourceName: "Mithun.jpeg")
+            CommonUtils.setImageFrom(url: user.avatarURL?.relativeString, imageView:  cell.userAvatar)
             cell.selectionStyle = .none
             return cell
         } else {
             let cell = UITableViewCell()
-            let userData = ["Username: \(user.login ?? "Unknown")",
-                            "Name: \( user.name ?? "Unknown")",
-                            "Email: \(user.email ?? "Unknown")",
-                            "Bio: \(user.bio ?? "Unknown")"]
+            let userData = ["Username: \(user.login ?? "Not Available")",
+                            "Name: \( user.name ?? "Not Available")",
+                            "Email: \(user.email ?? "Not Available")",
+                            "Bio: \(user.bio ?? "Not Available")"]
             
             cell.textLabel?.text = userData[indexPath.row]
             cell.selectionStyle = .none

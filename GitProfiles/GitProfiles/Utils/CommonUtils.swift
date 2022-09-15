@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 
 struct CommonUtils {
@@ -19,5 +20,15 @@ struct CommonUtils {
         navVc.modalTransitionStyle = .coverVertical
         navVc.modalPresentationStyle = .fullScreen
         viewController.present(navVc, animated: true)
+    }
+    
+    //MARK: -Set image from URL
+    static func setImageFrom(url: String?, imageView: UIImageView?){
+        guard let imgURL = URL.init(string: url ?? "") else {
+            return
+        }
+        let resource = ImageResource(downloadURL: imgURL)
+        imageView?.contentMode = .scaleToFill
+        imageView?.kf.setImage(with: resource, placeholder: UIImage(systemName: "photo.fill"), options: nil, completionHandler: nil)
     }
 }
